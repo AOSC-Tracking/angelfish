@@ -56,7 +56,6 @@ ecm_setup_version(${PROJECT_VERSION}
 ################# Find dependencies #################
 
 find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Core Quick Test Gui Svg QuickControls2 Sql Widgets)
-find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} OPTIONAL_COMPONENTS Feedback)
 find_package(KF${QT_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS Kirigami2 Purpose I18n Config CoreAddons DBusAddons WindowSystem Notifications OPTIONAL_COMPONENTS QQC2DesktopStyle)
 find_package(KF${QT_MAJOR_VERSION}KirigamiAddons 0.6 REQUIRED)
 set_package_properties(KF${QT_MAJOR_VERSION}QQC2DesktopStyle PROPERTIES TYPE RUNTIME)
@@ -86,11 +85,6 @@ set_package_properties(Corrosion PROPERTIES
 add_definitions(-DQT_NO_FOREACH -DQT_NO_URL_CAST_FROM_STRING)
 kde_enable_exceptions()
 qcoro_enable_coroutines()
-
-if (NOT Qt${QT_MAJOR_VERSION}Feedback_FOUND)
-    message(WARNING "Qt Feedback dependency is not found.\n"
-        "While it is optional since unmaintained, haptics feedback functionality is not supported without it.")
-endif()
 
 ################# build and install #################
 add_subdirectory(lib)
